@@ -61,6 +61,15 @@
     <Reference Include="System.Web.Http.Cors">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.7\lib\net45\System.Web.Http.Cors.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="WebApiContrib.IoC.Ninject">
+      <HintPath>..\packages\WebApiContrib.IoC.Ninject.0.9.3.0\lib\net40\WebApiContrib.IoC.Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.ChildKernel">
+      <HintPath>..\packages\Ninject.Extensions.ChildKernel.3.3.0\lib\net45\Ninject.Extensions.ChildKernel.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Web.config" />
@@ -74,17 +83,28 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Models\Employee.cs" />
-    <Compile Include="IEmployeeServices.cs" />
-    <Compile Include="EmployeeServices.cs" />
     <Compile Include="Models\PetaPoco.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Office.cs" />
     <Compile Include="Models\Designation.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
+    <Compile Include="Controllers\OfficeController.cs" />
+    <Compile Include="Controllers\DesignationController.cs" />
+    <Compile Include="NinjectResolver.cs" />
+    <Compile Include="Services\DepartmentServices.cs" />
+    <Compile Include="Services\DesignationServices.cs" />
+    <Compile Include="Services\EmployeeServices.cs" />
+    <Compile Include="Services\OfficeServices.cs" />
+    <Compile Include="Contracts\IDepartmentServices.cs" />
+    <Compile Include="Contracts\IDesignationServices.cs" />
+    <Compile Include="Contracts\IEmployeeServices.cs" />
+    <Compile Include="Contracts\IOfficeServices.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
     <Folder Include="Models\" />
+    <Folder Include="Services\" />
+    <Folder Include="Contracts\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Models\Generated\PetaPoco.Generator.ttinclude" />

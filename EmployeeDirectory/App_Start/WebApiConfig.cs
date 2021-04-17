@@ -11,6 +11,8 @@ namespace EmployeeDirectory
             // Web API configuration and services
 
             // Web API routes
+            config.DependencyResolver = new NinjectResolver();
+
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(

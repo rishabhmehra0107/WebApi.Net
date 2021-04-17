@@ -2,31 +2,48 @@
 using System.Collections.Generic;
 using EmployeeDirectory.Models;
 using System.Web.Http;
+using EmployeeDirectory.Contracts;
 using PetaPoco;
 
 namespace EmployeeDirectory.Controllers
 {
+    [RoutePrefix("api/employee")]
     public class EmployeeController : ApiController
     {
+        public IEmployeeServices _employeeService { get; set; }
 
-        private readonly IEmployeeServices _employeeRepository = new EmployeeServices();
-        IList<Employee> _employees = new List<Employee>();
+        public EmployeeController(IEmployeeServices employeeService)
+        {
+            this._employeeService = employeeService;
+        }
 
+        [HttpGet]
+        [Route("allemployeedetails")]
         public IList<Employee> GetEmployees()
         {
-            _employees=_employeeRepository.GetAllEmployees();
-            return _employees;
+            return this._employeeService.GetAllEmployees();
         }
 
-        public IList<Department> GetDepartments()
-        {
-            return _employeeRepository.GetAllDepartments();
-        }
 
         [HttpPost]
+        [Route("insertemployeedetails")]
         public void InsertEmployee(Employee employee)
         {
-            _employeeRepository.InsertEmployee(employee);
+            this._employeeService.InsertEmployee(employee);
+        }
+
+        [HttpPut]
+        [Route("updateemployeedetails")]
+        public void UpdateEmployee(Employee employee)
+        {
+            this._employeeService.UpdateEmployee(employee);
+        }
+
+        [HttpDelete]
+        [Route("deleteemployeedetails")]
+        public void DeleteEmployee(int id)
+        {
+            this._employeeService.DeleteEmployee(id);
         }
     }
 }

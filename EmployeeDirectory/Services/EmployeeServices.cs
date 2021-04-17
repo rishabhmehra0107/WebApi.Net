@@ -2,10 +2,9 @@
 using PetaPoco;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data.SqlClient;
+using EmployeeDirectory.Contracts;
 
-namespace EmployeeDirectory
+namespace EmployeeDirectory.Services
 {
     public class EmployeeServices : IEmployeeServices
     {
@@ -16,24 +15,26 @@ namespace EmployeeDirectory
         }
         public IList<Employee> GetAllEmployees()
         {
-            string query = "SELECT * FROM Employees";
+            string query = "SELECT * FROM Employee";
             IList<Employee> employeeList = this.connection.Fetch<Employee>(query);
 
             return employeeList;
         }
 
-        public IList<Department> GetAllDepartments()
-        {
-            string query = "SELECT * FROM Department";
-            IList<Department> departmentList = this.connection.Fetch<Department>(query);
-
-            return departmentList;
-        }
-
         public void InsertEmployee(Employee employee)
         {
 
-            this.connection.Insert("Employees","Id",false,employee);
+            this.connection.Insert("Employee","id",false,employee);
+        }
+
+        public void UpdateEmployee(Employee employee)
+        {
+            this.connection.Update("Employee", "id",employee);
+        }
+
+        public void DeleteEmployee(int id)
+        {
+            this.connection.Delete<Employee>(id);
         }
     }
 }

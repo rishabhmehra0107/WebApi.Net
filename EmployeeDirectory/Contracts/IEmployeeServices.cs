@@ -1,14 +1,13 @@
 ﻿using System;
 using EmployeeDirectory.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-namespace EmployeeDirectory
+namespace EmployeeDirectory.Contracts
 {
     public interface IEmployeeServices
     {
         IList<Employee> GetAllEmployees();
-        IList<Department> GetAllDepartments();
         void InsertEmployee(Employee employee);
+        void UpdateEmployee(Employee employee);
+        void DeleteEmployee(int id);
     }
 }

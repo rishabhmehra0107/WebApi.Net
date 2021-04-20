@@ -18,10 +18,31 @@ namespace EmployeeDirectory.Controllers
         }
 
         [HttpGet]
-        [Route("AllOfficeDetails")]
+        [Route("allofficedetails")]
         public IList<Office> GetOffices()
         {
             return _officeService.GetAllOffices();
+        }
+
+        [HttpPost]
+        [Route("create")]
+        public void AddOffice(Office office)
+        {
+            this._officeService.AddOffice(office);
+        }
+
+        [HttpPut]
+        [Route("update")]
+        public void UpdateOffice(Office office)
+        {
+            this._officeService.UpdateOffice(office);
+        }
+
+        [HttpDelete]
+        [Route("delete")]
+        public void DeleteOffice(int id)
+        {
+            this._officeService.DeleteOffice(id);
         }
     }
 }

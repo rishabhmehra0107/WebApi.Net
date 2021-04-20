@@ -3,8 +3,8 @@ namespace EmployeeDirectory.Models
 {
     public class Designation
     {
-        public int DesignationId { get; set; }
+        public int Id { get; set; }
 
-        public string DesignationTitle { get; set; }
+        public string Title { get; set; }
     }
 }

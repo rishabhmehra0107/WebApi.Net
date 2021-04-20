@@ -3,8 +3,8 @@ namespace EmployeeDirectory.Models
 {
     public class Office
     {
-        public int OfficeId { get; set; }
+        public int Id { get; set; }
 
-        public string OfficeLocation { get; set; }
+        public string Location { get; set; }
     }
 }

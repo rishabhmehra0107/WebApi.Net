@@ -21,5 +21,21 @@ namespace EmployeeDirectory.Services
 
             return designationtList;
         }
+
+        public void AddDesignation(Designation designation)
+        {
+
+            this.connection.Insert("Designation", "Id", true, designation);
+        }
+
+        public void UpdateDesignation(Designation designation)
+        {
+            this.connection.Update("Designation", "Id", designation);
+        }
+
+        public void DeleteDesignation(int id)
+        {
+            this.connection.Delete<Designation>(id);
+        }
     }
 }

@@ -21,5 +21,21 @@ namespace EmployeeDirectory.Services
 
             return officeList;
         }
+
+        public void AddOffice(Office office)
+        {
+
+            this.connection.Insert("Office", "Id", true, office);
+        }
+
+        public void UpdateOffice(Office office)
+        {
+            this.connection.Update("Office", "Id", office);
+        }
+
+        public void DeleteOffice(int id)
+        {
+            this.connection.Delete<Office>(id);
+        }
     }
 }

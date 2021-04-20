@@ -24,6 +24,13 @@ namespace EmployeeDirectory.Controllers
             return this._employeeService.GetAllEmployees();
         }
 
+        [HttpGet]
+        [Route("getsingleemployee")]
+        public IList<Employee> GetId()
+        {
+            return this._employeeService.GetCurrentId();
+        }
+
 
         [HttpPost]
         [Route("insertemployeedetails")]
@@ -40,7 +47,7 @@ namespace EmployeeDirectory.Controllers
         }
 
         [HttpDelete]
-        [Route("deleteemployeedetails")]
+        [Route("delete")]
         public void DeleteEmployee(int id)
         {
             this._employeeService.DeleteEmployee(id);

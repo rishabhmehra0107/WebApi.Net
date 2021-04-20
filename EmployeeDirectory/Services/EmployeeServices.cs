@@ -36,5 +36,12 @@ namespace EmployeeDirectory.Services
         {
             this.connection.Delete<Employee>(id);
         }
+
+        public IList<Employee> GetCurrentId()
+        {
+            string query = "SELECT TOP 1 id  FROM EMPLOYEE ORDER BY id DESC";
+            IList<Employee> employeeList = this.connection.Fetch<Employee>(query);
+            return employeeList;
+        }
     }
 }

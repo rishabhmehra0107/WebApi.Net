@@ -20,5 +20,21 @@ namespace EmployeeDirectory.Services
 
             return departmentList;
         }
+
+        public void AddDepartment(Department department)
+        {
+
+            this.connection.Insert("Department", "Id", true, department);
+        }
+
+        public void UpdateDepartment(Department department)
+        {
+            this.connection.Update("Department", "Id", department);
+        }
+
+        public void DeleteDepartment(int id)
+        {
+            this.connection.Delete<Department>(id);
+        }
     }
 }

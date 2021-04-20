@@ -18,10 +18,31 @@ namespace EmployeeDirectory.Controllers
         }
 
         [HttpGet]
-        [Route("AllDesignationDetails")]
+        [Route("alldesignationdetails")]
         public IList<Designation> GetDesignations()
         {
             return _designationService.GetAllDesignations();
+        }
+
+        [HttpPost]
+        [Route("create")]
+        public void AddDesignation(Designation designation)
+        {
+            this._designationService.AddDesignation(designation);
+        }
+
+        [HttpPut]
+        [Route("update")]
+        public void UpdateDepartment(Designation designation)
+        {
+            this._designationService.UpdateDesignation(designation);
+        }
+
+        [HttpDelete]
+        [Route("delete")]
+        public void DeleteDesignation(int id)
+        {
+            this._designationService.DeleteDesignation(id);
         }
     }
 }

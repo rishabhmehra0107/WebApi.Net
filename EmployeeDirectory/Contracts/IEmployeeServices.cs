@@ -9,5 +9,6 @@ namespace EmployeeDirectory.Contracts
         void InsertEmployee(Employee employee);
         void UpdateEmployee(Employee employee);
         void DeleteEmployee(int id);
+        IList<Employee> GetCurrentId();
     }
 }

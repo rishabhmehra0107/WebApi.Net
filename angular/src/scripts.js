@@ -1,0 +1,1 @@
+/*@import '../src/bootstrap-5.0.0-beta3-dist/js/bootstrap.bundle';*/

@@ -1,0 +1,90 @@
+
+<app-filter [employeeFilter]="employeeFilters" [selectedFilter]="selectedFilters" (filterEmployees)="filterEmployees($event)"></app-filter>
+<div class="section employee-display-section col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9">
+    <div class="search-button col-12">
+        <div class="row">
+        <button class="alphabet-class btn btn-primary shadow-none col"><i class="fas fa-user"></i></button>
+        <button class="alphabet-class btn btn-primary shadow-none col"(click)="searchByletter(letter.value)" *ngFor="let letter of letters">{{letter.value}}</button>
+    </div>    
+</div>
+    <div class="row">
+    <div class="user-access-bar search-employee-section col-12 col-sm-12 col-md-12 col-lg-6 col-xl-5">
+        <p><b>Search</b></p>
+        <div class="search-box">
+
+            <i class="fa fa-search" aria-hidden="true"></i>
+        
+            <input type="search" (keyup)="selectedFilters.searchedInput=$event.target.value;filterEmployees(selectedFilters)" placeholder="Enter any keyword" name="searchEntry">
+        
+        </div>
+        <button class="btn btn-primary shadow-none btn-lg" type="button" (click)="clearData()">Clear</button>
+    </div>
+    <div class="user-access-bar filter-employee-section col-12 col-sm-12 col-md-12 col-lg-6 col-xl-5">
+        <p>Filter by</p>
+        <select name="filterEmployee" id="selectType" (change)="selectedFilters.selectedDropdownFilter=$event.target.value">
+            <option value="Preferred Name">Preferred Name</option>
+            <option value="First Name">First Name</option>
+            <option value="Last Name">Last Name</option>
+            <option value="Department">Department</option>
+            <option value="Office">Office</option>
+            <option value="Job Title">Job Title</option>
+            <option value="Email">Email</option>
+            <option value="Phone">Phone</option>
+            <option value="Skype ID">Skype ID</option>
+          </select>
+    </div>
+    <div class="user-access-bar add-employee-button col-12 col-sm-12 col-md-12 col-lg-6 col-xl-2">
+        <button class="btn btn-primary shadow-none"  type="button" (click)="openEmployee(null)">Add Employee</button>
+    </div>
+</div>
+<div class="row">
+<div class="note col-12">
+    <p><b class="note-section">Note:</b> Please use the advanced filter options to refine your results.</p>
+</div>
+</div>
+    <div class="employee-section row">
+        <div class="col-12">
+        <p id="noEmployeeAdded" *ngIf="noEmployeePresent()">No employees are added yet.</p>
+        <div class="employee-cards" id="employeeList" *ngFor="let employee of filteredEmployees">
+                <div class="employee-card col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3" (click)="openEmployee(employee)" >
+                    <img class='container-image' src='https://cdn.wisden.com/wp-content/uploads/2017/11/GettyImages-689405274-e1520010556769.jpg'>
+                    <div class='container-text'>
+                        <h4 class='name'>{{employee.firstName}}&nbsp;{{employee.lastName}}<i (click)="display='block'" data-toggle="modal" data-target="#exampleModal" class="fas fa-trash-alt"></i></h4>
+                        <p class='employee-job-title'>{{employee.jobTitle}}</p>
+                        <p class='employee-department'>{{employee.department}}</p>
+                        <i class='fas fa-phone-square-alt'></i>
+                        <i class='fas fa-envelope'></i>
+                        <i class='fas fa-comment'></i>
+                        <i class='fas fa-star'></i>
+                        <i class='fas fa-heart'></i>
+                        </div>
+                    </div>
+                    <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
+                        <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                    <div class="modal-header">
+                                          <h4 class="modal-title">Delete Employee</h4>
+                                          <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+                                        </div>
+                               <div class="modal-body">
+                                          <p>Are you sure, you want to delete employee?</p>
+                                        </div>
+                                    <div class="modal-footer">
+                                          <button type="button" class="btn btn-default" (click)="display='none'" >Close</button>
+                                          <button type="button" class="btn btn-default" (click)="deleteEmployee(employee)" >Yes</button>
+                                        </div>
+                           </div>
+                            </div>
+                </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+<div class="row">
+  <div class="edit-popup form-popup col-12 col-sm-8 col-md-4 col-lg-3 col-xl-2" *ngIf="!!activeEmployee">
+    <div class="form-container">
+    <app-employeeform (saveEmployee)="saveEmployee($event)" (closeForm)="closeForm($event)" [employee]="activeEmployee"></app-employeeform>
+</div>
+</div>
+</div>

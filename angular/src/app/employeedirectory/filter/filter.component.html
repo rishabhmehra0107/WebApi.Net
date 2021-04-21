@@ -1,0 +1,26 @@
+<div class="section filter-section col-md-3">
+    <div class="department col-12">
+            <h3><b>Departments</b></h3>
+            <p id="noEmployeeAdded" *ngIf="!employeeFilter || (employeeFilter && !employeeFilter.departments) || (employeeFilter && !!employeeFilter.departments && !employeeFilter.departments.length)">No filters are added yet.</p>
+            <button (click)="filter(department.value)" *ngFor="let department of employeeFilter.departments; let i = index" [hidden]="viewMore && i>1">
+                {{department.value + "("+department.count+")"}}
+            </button>
+        <div class="view-more" *ngIf="enableView('department')" (click)="viewMore = !viewMore">{{viewMore ? 'View More':'Show Less'}}</div>
+    </div>
+    <div class="office col-12">
+            <h3>Offices</h3>
+            <p id="noEmployeeAdded" *ngIf="!employeeFilter || (employeeFilter && !employeeFilter.offices) || (employeeFilter && !!employeeFilter.offices && !employeeFilter.offices.length)">No filters are added yet.</p>
+            <button (click)="filter(office.value)" *ngFor="let office of employeeFilter.offices; let i = index" [hidden]="viewMore && i>1">
+                {{office.value + "("+office.count+")"}}
+            </button>
+        <div class="view-more" *ngIf="enableView('office')" (click)="viewMore = !viewMore">{{viewMore ? 'View More':'Show Less'}}</div>
+    </div>
+    <div class="job-title col-12">
+            <h3>Job Titles</h3>
+            <p id="noEmployeeAdded" *ngIf="!employeeFilter || (employeeFilter && !employeeFilter.jobTitles) || (employeeFilter && !!employeeFilter.jobTitles && !employeeFilter.jobTitles.length)">No filters are added yet.</p>
+            <button (click)="filter(jobtitle.value)" *ngFor="let jobtitle of employeeFilter.jobTitles; let i = index" [hidden]="viewMore && i>1">
+                {{jobtitle.value + "("+jobtitle.count+")"}}
+            </button>
+        <div class="view-more" *ngIf="enableView('jobtitle')" (click)="viewMore = !viewMore">{{viewMore ? 'View More':'Show Less'}}</div>
+    </div>
+</div>

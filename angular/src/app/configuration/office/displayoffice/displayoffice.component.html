@@ -1,0 +1,71 @@
+<div class="row">
+<ul class="nav nav-tabs col-12">
+    <li class="nav-item">
+      <button routerLink="department" class="nav-link" aria-current="page">Departments</button>
+    </li>
+    <li class="nav-item">
+        <button routerLink="office" class="nav-link active" aria-current="page">Offices</button>
+      </li>
+      <li class="nav-item">
+        <button routerLink="designation" class="nav-link" aria-current="page">Designation</button>
+      </li>
+  </ul>
+  <ul class="nav justify-content-end">
+    <li class="nav-item">
+        <button class="nav-link btn btn-outline-info" aria-current="page" (click)="enableAdd=!enableAdd;">Create</button>
+    </li>
+  </ul>
+</div>
+<div *ngIf="!officeList.length">
+    <p>No offices are added!</p>
+</div>
+<table class="table table-striped">
+    <thead>
+        <tr class="row">
+            <th class="col-4">Id</th>
+            <th class="col-4">Location</th>
+            <th class="col-4">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="row" *ngFor="let office of officeList; index as i;">
+            <td class="col-4">{{office.Id}}</td>
+            <td class="col-4">
+                <input type="text" name="" class="edit-item input-box" value="{{office.Location}}" #item>
+            </td>
+                <td class="col-4">
+                    <button *ngIf="show && enableEditIndex == i" (click)="show=false" class="btn page-secondary-action-btn" ng-click="cancel()">Cancel</button>
+                    <button *ngIf="show && enableEditIndex == i" id="saveBtn" class="btn page-primary-action-btn" (click)="update(item.value,office.Id)" type="submit">Update</button>
+                    <button type="button" class="btn btn-light mr-1"  *ngIf="!show" (click)="enableEditMethod($event, i)">
+                    Edit</button>
+                    <button *ngIf="!show" type="button" class="btn btn-light mr-1" (click)="display='block';id=office.Id;">Delete</button>
+                </td>
+                <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                              <h4 class="modal-title">Delete Office</h4>
+                              <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="modal-body">
+                              <p>Are you sure, you want to delete office?</p>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default" (click)="display='none'" >Close</button>
+                              <button type="button" class="btn btn-default" (click)="display='none';deleteOffice();">Yes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </tr>
+        <tr *ngIf="enableAdd" class="row">
+            <td class="col-4"></td>
+            <td class="col-4">
+                <input type="text" class="edit-item input-box" value="" #item>
+            </td>
+            <td class="col-4">
+                <button class="btn btn-light mr-1" type="button" (click)="enableAdd=!enableAdd;addOffice(item.value)">Add Office</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
